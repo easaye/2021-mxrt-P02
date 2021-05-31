@@ -15,13 +15,13 @@ public class CheckShapes : MonoBehaviour
     private bool circleInDrawing = false;
     private bool triangleInDrawing = false;
     private bool squareInDrawing = false;
-    private bool wrongShape = false;
-    private bool correctShape = false;
+    //private bool wrongShape = false;
+    //private bool correctShape = false;
     private int shapeShown = 0;
     // Start is called before the first frame update
     void Start()
     {
-        
+        shapeNeed();
     }
 
     // Update is called once per frame
