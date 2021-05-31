@@ -27,8 +27,6 @@ public class CheckShapes : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        shapeShown = Random.Range(0, shapes.Length);
-        shapes[shapeShown].SetActive(true);
         for (int i = 0; i < shapes.Length; i++)
         {
             if (shapes[0].active == true)
@@ -44,6 +42,7 @@ public class CheckShapes : MonoBehaviour
                 {
                     wrong.SetActive(true);
                     correct.SetActive(false);
+                    shapeNeed();
                 }
             }
             if (shapes[1].active == true)
@@ -59,6 +58,7 @@ public class CheckShapes : MonoBehaviour
                 {
                     wrong.SetActive(true);
                     correct.SetActive(false);
+                    shapeNeed();
                 }
             }
             if (shapes[2].active == true)
@@ -74,11 +74,18 @@ public class CheckShapes : MonoBehaviour
                 {
                     wrong.SetActive(true);
                     correct.SetActive(false);
+                    shapeNeed();
                 }
             }
             i = 0;
         }
         
+    }
+
+    private void shapeNeed()
+    {
+        shapeShown = Random.Range(0, shapes.Length);
+        shapes[shapeShown].SetActive(true);
     }
 
     public void circle()
