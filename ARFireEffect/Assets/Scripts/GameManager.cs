@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour
     public TMP_Text countdownText;
 
     public GameObject countdownPanel;
+    public GameObject timerTextt;
 
     private float timer = 60.0f;
     private float countdownTimer = 3.0f;
@@ -82,6 +83,11 @@ public class GameManager : MonoBehaviour
                     timerText.text = "00:00";
                 }
             }
+        }
+
+        if (timerText.text == "00:03")
+        {
+            timerText.color = Color.red;
         }
     }
 
