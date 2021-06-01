@@ -33,17 +33,18 @@ public class CheckShapes : MonoBehaviour
             if (circleIsShown == true)
             {
                 circle.SetActive(false);
-                correct.SetActive(true);
-                wrong.SetActive(false);
-                randomDrawing.displayDrawing();
+                circleIsShown = false;
+                correctShape();
             }
             else if(triangleIsShown == true)
             {
-                wrong.SetActive(true);
+                wrongShape();
+                triangleIsShown = false;
             }
             else if(squareIsShown == true)
             {
-                wrong.SetActive(true);
+                wrongShape();
+                squareIsShown = false;
             }
         }
         if (triangle.activeInHierarchy == true)
@@ -52,39 +53,72 @@ public class CheckShapes : MonoBehaviour
             if (triangleIsShown == true)
             {
                 triangle.SetActive(false);
-                correct.SetActive(true);
-                wrong.SetActive(false);
-                randomDrawing.displayDrawing();
+                /*correct.SetActive(true);
+                wrong.SetActive(false);*/
+                triangleIsShown = false;
+                /*randomDrawing.displayDrawing();*/
+                correctShape();
             }
             else if(circleIsShown == true)
             {
-                wrong.SetActive(true);
+                /*wrong.SetActive(true);*/
+                wrongShape();
+                circleIsShown = false;
             }
             else if(squareIsShown == true)
             {
-                wrong.SetActive(true);
+                /*wrong.SetActive(true);*/
+                wrongShape();
+                squareIsShown = false;
             }
         }
-            if (square.activeInHierarchy == true)
-            {
-                squareInDrawing = true;
+        if (square.activeInHierarchy == true)
+        {
+            squareInDrawing = true;
             if (squareIsShown == true)
             {
                 square.SetActive(false);
-                correct.SetActive(true);
-                wrong.SetActive(false);
-                randomDrawing.displayDrawing();
+                /*correct.SetActive(true);
+                wrong.SetActive(false);*/
+                squareIsShown = false;
+                /*randomDrawing.displayDrawing();*/
+                correctShape();
             }
             else if (circleIsShown == true)
             {
-                wrong.SetActive(true);
+                /*wrong.SetActive(true);*/
+                wrongShape();
+                circleIsShown = false;
             }
             else if (triangleIsShown == true)
             {
-                wrong.SetActive(true);
+                /*wrong.SetActive(true);*/
+                wrongShape();
+                triangleIsShown = false;
             }
         }
 
+    }
+
+    IEnumerator Wait()
+    {
+        yield return new WaitForSeconds(1);
+        correct.SetActive(false);
+        wrong.SetActive(false);
+
+    }
+
+    public void wrongShape()
+    {
+        wrong.SetActive(true);
+        StartCoroutine(Wait());
+    }
+
+    public void correctShape()
+    {
+        correct.SetActive(true);
+        randomDrawing.displayDrawing();
+        StartCoroutine(Wait());
     }
 
     public void circleShown()
