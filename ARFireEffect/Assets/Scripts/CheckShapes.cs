@@ -7,7 +7,10 @@ public class CheckShapes : MonoBehaviour
 {
     public GameObject correct;
     public GameObject wrong;
-    public GameObject []shapes;
+    public GameObject circle;
+    public GameObject triangle;
+    public GameObject square;
+    //private int shapes = 3;
 
     private bool circleIsShown = false;
     private bool triangleIsShown = false;
@@ -17,78 +20,81 @@ public class CheckShapes : MonoBehaviour
     private bool squareInDrawing = false;
     //private bool wrongShape = false;
     //private bool correctShape = false;
-    private int shapeShown = 0;
+    //private int shapeShown = 0;
     // Start is called before the first frame update
     void Start()
     {
-        shapeNeed();
+        //shapeNeed();
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-        for (int i = 0; i < shapes.Length; i++)
+        if (circle.activeInHierarchy == true)
         {
-            if (shapes[0].active == true)
+            circleInDrawing = true;
+            if (circleIsShown == true)
             {
-                circleInDrawing = true;
-                if (circleIsShown == true)
-                {
-                    shapes[0].SetActive(false);
-                    correct.SetActive(true);
-                    wrong.SetActive(false);
-                }
-                else
-                {
-                    wrong.SetActive(true);
-                    correct.SetActive(false);
-                    shapeNeed();
-                }
+                circle.SetActive(false);
+                correct.SetActive(true);
+                wrong.SetActive(false);
             }
-            if (shapes[1].active == true)
+            else if(triangleIsShown == true)
             {
-                triangleInDrawing = true;
-                if (triangleIsShown == true)
-                {
-                    shapes[1].SetActive(false);
-                    correct.SetActive(true);
-                    wrong.SetActive(false);
-                }
-                else
-                {
-                    wrong.SetActive(true);
-                    correct.SetActive(false);
-                    shapeNeed();
-                }
+                wrong.SetActive(true);
             }
-            if (shapes[2].active == true)
+            else if(squareIsShown == true)
+            {
+                wrong.SetActive(true);
+            }
+        }
+        if (triangle.activeInHierarchy == true)
+        {
+            triangleInDrawing = true;
+            if (triangleIsShown == true)
+            {
+                triangle.SetActive(false);
+                correct.SetActive(true);
+                wrong.SetActive(false);
+            }
+            else if(circleIsShown == true)
+            {
+                wrong.SetActive(true);
+            }
+            else if(squareIsShown == true)
+            {
+                wrong.SetActive(true);
+            }
+        }
+            if (square.activeInHierarchy == true)
             {
                 squareInDrawing = true;
-                if (squareIsShown == true)
-                {
-                    shapes[2].SetActive(false);
-                    correct.SetActive(true);
-                    wrong.SetActive(false);
-                }
-                else
-                {
-                    wrong.SetActive(true);
-                    correct.SetActive(false);
-                    shapeNeed();
-                }
+            if (squareIsShown == true)
+            {
+                square.SetActive(false);
+                correct.SetActive(true);
+                wrong.SetActive(false);
             }
-            i = 0;
+            else if (circleIsShown == true)
+            {
+                wrong.SetActive(true);
+            }
+            else if (triangleIsShown == true)
+            {
+                wrong.SetActive(true);
+            }
         }
-        
+
     }
 
-    private void shapeNeed()
-    {
-        shapeShown = Random.Range(0, shapes.Length);
-        shapes[shapeShown].SetActive(true);
-    }
+    //private void shapeNeed()
+    //{
+    //    shapeShown = Random.Range(0, shapes);
 
-    public void circle()
+    //}
+
+    public void circleShown()
     {
         circleIsShown = true;
     }
@@ -98,7 +104,7 @@ public class CheckShapes : MonoBehaviour
         circleIsShown = false;
     }
 
-    public void triangle()
+    public void triangleShown()
     {
         triangleIsShown = true;
     }
@@ -108,7 +114,7 @@ public class CheckShapes : MonoBehaviour
         triangleIsShown = false;
     }
 
-    public void square()
+    public void squareShown()
     {
         squareIsShown = true;
     }
