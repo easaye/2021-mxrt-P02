@@ -10,7 +10,8 @@ public class CheckShapes : MonoBehaviour
     public GameObject circle;
     public GameObject triangle;
     public GameObject square;
-    //private int shapes = 3;
+
+    private RandomDrawing randomDrawing;
 
     private bool circleIsShown = false;
     private bool triangleIsShown = false;
@@ -18,14 +19,9 @@ public class CheckShapes : MonoBehaviour
     private bool circleInDrawing = false;
     private bool triangleInDrawing = false;
     private bool squareInDrawing = false;
-    //private bool wrongShape = false;
-    //private bool correctShape = false;
-    //private int shapeShown = 0;
-    // Start is called before the first frame update
     void Start()
     {
-        //shapeNeed();
-        
+        randomDrawing = GetComponent<RandomDrawing>();
     }
 
     // Update is called once per frame
@@ -39,6 +35,7 @@ public class CheckShapes : MonoBehaviour
                 circle.SetActive(false);
                 correct.SetActive(true);
                 wrong.SetActive(false);
+                randomDrawing.displayDrawing();
             }
             else if(triangleIsShown == true)
             {
@@ -57,6 +54,7 @@ public class CheckShapes : MonoBehaviour
                 triangle.SetActive(false);
                 correct.SetActive(true);
                 wrong.SetActive(false);
+                randomDrawing.displayDrawing();
             }
             else if(circleIsShown == true)
             {
@@ -75,6 +73,7 @@ public class CheckShapes : MonoBehaviour
                 square.SetActive(false);
                 correct.SetActive(true);
                 wrong.SetActive(false);
+                randomDrawing.displayDrawing();
             }
             else if (circleIsShown == true)
             {
@@ -87,12 +86,6 @@ public class CheckShapes : MonoBehaviour
         }
 
     }
-
-    //private void shapeNeed()
-    //{
-    //    shapeShown = Random.Range(0, shapes);
-
-    //}
 
     public void circleShown()
     {
