@@ -12,18 +12,21 @@ public class GameManager : MonoBehaviour
 
     public GameObject countdownPanel;
     public GameObject timerTextt;
+    public GameObject pausedPanel;
 
     private float timer = 60.0f;
     private float countdownTimer = 3.0f;
     private bool timerRunning  = false;
     private bool countDown = false;
     private bool gameStart = false;
+    private bool isPaused = false;
     private float minutes = 0.0f;
     private float seconds = 0.0f;
 
     public static GameManager instance = null;
     private CheckShapes checkShapes;
     private RandomDrawing randomDrawing;
+    private Score score;
     // Start is called before the first frame update
     void Start()
     {
@@ -31,6 +34,7 @@ public class GameManager : MonoBehaviour
         timerText.enabled = false;
         checkShapes = GetComponent<CheckShapes>();
         randomDrawing = GetComponent<RandomDrawing>();
+        score = GetComponent<Score>();
     }
 
     // Update is called once per frame
@@ -66,9 +70,10 @@ public class GameManager : MonoBehaviour
         {
             timerRunning = true;
             timerText.enabled = true;
-            checkShapes.checkShapes();
+            
             if (timerRunning)
-            {
+            {   
+                checkShapes.checkShapes();
                 DisplayTime(timer, timerText);
                 if (timer > 0)
                 {
@@ -98,5 +103,17 @@ public class GameManager : MonoBehaviour
         seconds = Mathf.FloorToInt(timeToDisplay % 60);
 
         text.text = string.Format("{0:00}:{1:00}", minutes, seconds);
+    }
+
+    public void Paused()
+    {
+        isPaused = true;
+        timerRunning = false;
+    }
+
+    public void Play()
+    {
+        isPaused = false;
+        timerRunning = true;
     }
 }
