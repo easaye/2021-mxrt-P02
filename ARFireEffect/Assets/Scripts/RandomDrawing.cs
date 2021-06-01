@@ -12,7 +12,6 @@ public class RandomDrawing : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        displayDrawing();
     }
 
     // Update is called once per frame

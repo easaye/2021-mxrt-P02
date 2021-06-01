@@ -31,6 +31,11 @@ public class CheckShapes : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+    }
+
+    public void checkShapes()
+    {
         if (circle.activeInHierarchy == true)
         {
             circleInDrawing = true;
@@ -40,12 +45,12 @@ public class CheckShapes : MonoBehaviour
                 circleIsShown = false;
                 correctShape();
             }
-            else if(triangleIsShown == true)
+            else if (triangleIsShown == true)
             {
                 wrongShape();
                 triangleIsShown = false;
             }
-            else if(squareIsShown == true)
+            else if (squareIsShown == true)
             {
                 wrongShape();
                 squareIsShown = false;
@@ -59,14 +64,13 @@ public class CheckShapes : MonoBehaviour
                 triangle.SetActive(false);
                 triangleIsShown = false;
                 correctShape();
-
             }
-            else if(circleIsShown == true)
+            else if (circleIsShown == true)
             {
                 wrongShape();
                 circleIsShown = false;
             }
-            else if(squareIsShown == true)
+            else if (squareIsShown == true)
             {
                 wrongShape();
                 squareIsShown = false;
@@ -92,7 +96,6 @@ public class CheckShapes : MonoBehaviour
                 triangleIsShown = false;
             }
         }
-
     }
 
     IEnumerator Wait()
@@ -100,7 +103,6 @@ public class CheckShapes : MonoBehaviour
         yield return new WaitForSeconds(1);
         correct.SetActive(false);
         wrong.SetActive(false);
-
     }
 
     public void wrongShape()
