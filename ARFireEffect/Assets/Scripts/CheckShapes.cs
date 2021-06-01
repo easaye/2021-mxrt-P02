@@ -11,7 +11,9 @@ public class CheckShapes : MonoBehaviour
     public GameObject triangle;
     public GameObject square;
 
+    public static CheckShapes instance = null;
     private RandomDrawing randomDrawing;
+    private Score score;
 
     private bool circleIsShown = false;
     private bool triangleIsShown = false;
@@ -19,9 +21,11 @@ public class CheckShapes : MonoBehaviour
     private bool circleInDrawing = false;
     private bool triangleInDrawing = false;
     private bool squareInDrawing = false;
+    
     void Start()
     {
         randomDrawing = GetComponent<RandomDrawing>();
+        score = GetComponent<Score>();
     }
 
     // Update is called once per frame
@@ -53,21 +57,17 @@ public class CheckShapes : MonoBehaviour
             if (triangleIsShown == true)
             {
                 triangle.SetActive(false);
-                /*correct.SetActive(true);
-                wrong.SetActive(false);*/
                 triangleIsShown = false;
-                /*randomDrawing.displayDrawing();*/
                 correctShape();
+
             }
             else if(circleIsShown == true)
             {
-                /*wrong.SetActive(true);*/
                 wrongShape();
                 circleIsShown = false;
             }
             else if(squareIsShown == true)
             {
-                /*wrong.SetActive(true);*/
                 wrongShape();
                 squareIsShown = false;
             }
@@ -78,21 +78,16 @@ public class CheckShapes : MonoBehaviour
             if (squareIsShown == true)
             {
                 square.SetActive(false);
-                /*correct.SetActive(true);
-                wrong.SetActive(false);*/
                 squareIsShown = false;
-                /*randomDrawing.displayDrawing();*/
                 correctShape();
             }
             else if (circleIsShown == true)
             {
-                /*wrong.SetActive(true);*/
                 wrongShape();
                 circleIsShown = false;
             }
             else if (triangleIsShown == true)
             {
-                /*wrong.SetActive(true);*/
                 wrongShape();
                 triangleIsShown = false;
             }
@@ -111,6 +106,7 @@ public class CheckShapes : MonoBehaviour
     public void wrongShape()
     {
         wrong.SetActive(true);
+        score.DeductScore();
         StartCoroutine(Wait());
     }
 
@@ -118,6 +114,7 @@ public class CheckShapes : MonoBehaviour
     {
         correct.SetActive(true);
         randomDrawing.displayDrawing();
+        score.AddScore();
         StartCoroutine(Wait());
     }
 

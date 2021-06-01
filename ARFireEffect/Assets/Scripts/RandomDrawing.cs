@@ -6,6 +6,8 @@ public class RandomDrawing : MonoBehaviour
 {
     public GameObject[] shapes;
 
+    private int timer;
+
     public static RandomDrawing instance = null;
     // Start is called before the first frame update
     void Start()
@@ -17,6 +19,11 @@ public class RandomDrawing : MonoBehaviour
     void Update()
     {
         
+    }
+
+    IEnumerator Wait()
+    {
+        yield return new WaitForSeconds(1);
     }
 
     public void displayDrawing()
