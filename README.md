@@ -1,2 +1,3 @@
 # 2021-mxrt-P02
-Repository for class
+Repository for Assignment 2
+
